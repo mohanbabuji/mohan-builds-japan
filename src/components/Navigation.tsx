@@ -30,73 +30,72 @@ export const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-surface/95 backdrop-blur-md shadow-soft' : 'bg-transparent'
+      scrolled ? 'bg-white border-b border-gray-200' : 'bg-white'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="font-bold text-xl text-text-hero">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo - Awwwards Style */}
+          <Link to="/" className="text-2xl font-black tracking-tight text-black hover:text-gray-600 transition-colors">
             MOHAN
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation - Minimal */}
+          <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-brand-primary ${
-                  isActive(item.path) ? 'text-brand-primary' : 'text-text-secondary'
+                className={`nav-minimal ${
+                  isActive(item.path) ? 'text-black border-b-2 border-black pb-1' : 'text-gray-600'
                 }`}
               >
                 {item.label}
               </Link>
             ))}
             
-            {/* Language Toggle */}
+            {/* Language Toggle - Minimal */}
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleLanguage}
-              className="flex items-center space-x-1 text-text-secondary hover:text-brand-primary"
+              className="nav-minimal border border-gray-300 px-4 py-2 hover:bg-gray-100"
             >
-              <Globe className="h-4 w-4" />
-              <span className="text-xs font-medium">{language.toUpperCase()}</span>
+              {language.toUpperCase()}
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center space-x-4">
             <Button
               variant="ghost"
               size="sm"
               onClick={toggleLanguage}
-              className="text-text-secondary"
+              className="text-black text-xs font-medium tracking-wide uppercase"
             >
-              <Globe className="h-4 w-4" />
+              {language.toUpperCase()}
             </Button>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-text-secondary"
+              className="text-black"
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Full Screen Overlay */}
         {isOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-surface shadow-large border-t">
-            <div className="px-4 pt-2 pb-3 space-y-1">
+          <div className="md:hidden fixed inset-0 top-20 bg-white z-40">
+            <div className="px-6 pt-8 pb-6 space-y-8">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 text-base font-medium transition-colors duration-200 hover:text-brand-primary ${
-                    isActive(item.path) ? 'text-brand-primary' : 'text-text-secondary'
+                  className={`block text-3xl font-bold tracking-tight transition-colors duration-200 ${
+                    isActive(item.path) ? 'text-black' : 'text-gray-400 hover:text-black'
                   }`}
                 >
                   {item.label}
