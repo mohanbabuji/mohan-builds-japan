@@ -175,16 +175,16 @@
   /* Component Utilities */
   .btn-primary {
     @apply px-6 py-3 bg-gradient-to-r from-purple-300 to-sky-500 text-white font-medium rounded-lg 
-           shadow-medium hover:shadow-large transition-all duration-300 transform hover:scale-105;
+           shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
   }
   
   .btn-secondary {
     @apply px-6 py-3 bg-surface border border-gray-200 text-primary font-medium rounded-lg 
-           shadow-soft hover:shadow-medium transition-all duration-300;
+           shadow-md hover:shadow-lg transition-all duration-300;
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-large hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
   }
   
   .gradient-text {
