@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,31 +8,31 @@
 
 @layer base {
   :root {
-    /* Pure Black & White Design System */
-    --background: 255 255 255; /* pure white */
-    --foreground: 0 0 0; /* pure black */
-    --surface: 255 255 255; /* pure white */
-    
-    /* Black & White Brand Colors */
-    --brand-primary: 0 0 0; /* pure black */
-    --brand-secondary: 0 0 0; /* pure black */
-    --brand-accent: 255 255 255; /* pure white */
-    
-    /* Typography Scale - Pure Contrast */
-    --text-primary: 0 0 0; /* pure black */
-    --text-secondary: 0 0 0; /* pure black */
-    --text-muted: 0 0 0; /* pure black */
-    --text-hero: 0 0 0; /* pure black */
-    
-    /* Minimal Interactions */
-    --hover-primary: 255 255 255;
-    --hover-secondary: 0 0 0;
-    --focus-ring: 0 0 0 / 0.2;
-    
+    /* New Color Palette Design System */
+    --background: 0 0 89%; /* platinum */
+    --foreground: 166 16% 26%; /* dark-slate-gray */
+    --surface: 0 0 89%; /* platinum */
+
+    /* Brand Colors */
+    --brand-primary: 166 16% 26%; /* dark-slate-gray */
+    --brand-secondary: 165 2% 44%; /* dim-gray */
+    --brand-accent: 62 13% 63%; /* sage */
+
+    /* Typography Scale */
+    --text-primary: 166 16% 26%; /* dark-slate-gray */
+    --text-secondary: 165 2% 44%; /* dim-gray */
+    --text-muted: 165 2% 44%; /* dim-gray */
+    --text-hero: 166 16% 26%; /* dark-slate-gray */
+
+    /* Interactions */
+    --hover-primary: 345 5% 84%; /* timberwolf */
+    --hover-secondary: 166 16% 26%; /* dark-slate-gray */
+    --focus-ring: 166 16% 26% / 0.2;
+
     /* Subtle Effects */
-    --shadow-minimal: 0 1px 3px 0 hsl(0 0 0 / 0.08);
-    --shadow-soft: 0 2px 8px 0 hsl(0 0 0 / 0.12);
-    
+    --shadow-minimal: 0 1px 3px 0 hsl(166 16% 26% / 0.08);
+    --shadow-soft: 0 2px 8px 0 hsl(166 16% 26% / 0.12);
+
     /* Transitions */
     --transition-smooth: all 0.2s ease;
 
@@ -74,18 +74,18 @@
   }
 
   .dark {
-    --background: 0 0 0;
-    --foreground: 255 255 255;
-    --surface: 0 0 0;
-    
-    --brand-primary: 255 255 255;
-    --brand-secondary: 255 255 255;
-    --brand-accent: 0 0 0;
-    
-    --text-primary: 255 255 255;
-    --text-secondary: 255 255 255;
-    --text-muted: 255 255 255;
-    --text-hero: 255 255 255;
+    --background: 166 16% 26%; /* dark-slate-gray */
+    --foreground: 0 0 89%; /* platinum */
+    --surface: 166 16% 26%; /* dark-slate-gray */
+
+    --brand-primary: 0 0 89%; /* platinum */
+    --brand-secondary: 345 5% 84%; /* timberwolf */
+    --brand-accent: 62 13% 63%; /* sage */
+
+    --text-primary: 0 0 89%; /* platinum */
+    --text-secondary: 345 5% 84%; /* timberwolf */
+    --text-muted: 345 5% 84%; /* timberwolf */
+    --text-hero: 0 0 89%; /* platinum */
 
     --card: hsl(var(--surface));
     --card-foreground: hsl(var(--foreground));
@@ -123,57 +123,57 @@
   body {
     @apply bg-background text-foreground font-inter antialiased;
   }
-  
+
   /* Awwwards Typography - Ultra Bold & Minimal */
   .text-hero {
     @apply text-6xl md:text-8xl lg:text-9xl xl:text-[12rem] font-black tracking-tighter leading-none;
     color: hsl(var(--text-hero));
     font-weight: 900;
   }
-  
+
   .text-display {
     @apply text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight;
     color: hsl(var(--text-primary));
   }
-  
+
   .text-heading {
     @apply text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight;
     color: hsl(var(--text-primary));
   }
-  
+
   .text-subheading {
     @apply text-lg md:text-xl lg:text-2xl font-normal leading-relaxed;
     color: hsl(var(--text-secondary));
   }
-  
+
   .text-body {
     @apply text-base md:text-lg leading-relaxed;
     color: hsl(var(--text-secondary));
   }
-  
+
   .text-small {
     @apply text-sm md:text-base leading-relaxed;
     color: hsl(var(--text-muted));
   }
-  
+
   /* Minimal Awwwards Components */
   .btn-primary {
     @apply px-8 py-4 bg-black text-white font-medium tracking-wide uppercase text-sm 
            hover:bg-gray-800 transition-all duration-200 border-0;
     border-radius: 0;
   }
-  
+
   .btn-secondary {
     @apply px-8 py-4 bg-transparent border border-black text-black font-medium tracking-wide uppercase text-sm 
            hover:bg-black hover:text-white transition-all duration-200;
     border-radius: 0;
   }
-  
+
   .card-minimal {
     @apply bg-white border-0 transition-transform duration-200 hover:translate-y-[-2px];
     box-shadow: 0 1px 3px 0 hsl(0 0 0 / 0.08);
   }
-  
+
   .nav-minimal {
     @apply text-sm font-medium tracking-wide uppercase text-black hover:text-gray-600 transition-colors duration-200;
   }
@@ -191,7 +191,7 @@
       transform: translateY(0);
     }
   }
-  
+
   @keyframes minimal-slide-in {
     from {
       opacity: 0;
@@ -202,24 +202,24 @@
       transform: translateX(0);
     }
   }
-  
+
   .animate-fade-up {
     animation: minimal-fade-up 0.4s ease-out forwards;
     opacity: 0;
   }
-  
+
   .animate-slide-in-right {
     animation: minimal-slide-in 0.4s ease-out forwards;
     opacity: 0;
   }
-  
+
   /* Awwwards Grid */
   .awwwards-grid {
     display: grid;
     gap: 1px;
     background: hsl(var(--brand-accent));
   }
-  
+
   .awwwards-card {
     @apply bg-white p-8 hover:bg-gray-50 transition-colors duration-200 cursor-pointer;
   }
