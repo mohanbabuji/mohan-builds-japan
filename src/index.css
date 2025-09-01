@@ -129,6 +129,8 @@
     @apply text-6xl md:text-8xl lg:text-9xl xl:text-[12rem] font-black tracking-tighter leading-none;
     color: hsl(var(--text-hero));
     font-weight: 900;
+    line-height: 0.85;
+    margin-top: 0.5rem;
   }
 
   .text-display {
