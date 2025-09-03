@@ -12,7 +12,7 @@ const allProjects = [
     title: "AWS Cloud Monitoring Dashboard",
     description:
       "Real-time cloud infrastructure monitoring solution built with React, AWS Lambda, and CloudWatch. Features automated scaling recommendations and cost optimization insights.",
-    image: "/api/placeholder/600/400",
+
     technologies: [
       "React",
       "AWS Lambda",
@@ -31,7 +31,7 @@ const allProjects = [
     title: "Modern E-commerce Platform",
     description:
       "Full-stack e-commerce solution with serverless architecture, featuring payment integration, inventory management, and admin dashboard.",
-    image: "/api/placeholder/400/300",
+    image: "/images/Home.png",
     technologies: [
       "Next.js",
       "Stripe",
@@ -70,7 +70,7 @@ const allProjects = [
     title: "Shoe Shop Landing Page Design",
     description:
       "Modern and conversion-focused landing page design for a shoe retailer featuring product highlights, customer testimonials, and seamless shopping experience.",
-    image: "/api/placeholder/400/300",
+    image: "/images/Shoestop Landing page.png",
     technologies: ["React", "Tailwind CSS", "Framer Motion", "Next.js"],
     liveUrl: "https://example.com",
     githubUrl: "https://github.com/mohan/shoe-shop-landing",
@@ -81,7 +81,7 @@ const allProjects = [
     title: "Learnnow School Website Landing Page",
     description:
       "Professional educational website landing page design for Learnnow school featuring course information, student resources, and AWS learning materials with comprehensive documentation.",
-    image: "/api/placeholder/400/300",
+    image: "/images/lernow.PNG",
     technologies: ["React", "Next.js", "Tailwind CSS", "Notion API", "Vercel"],
     liveUrl: "https://erasreboot.io/",
     githubUrl: "https://github.com/mohan/learnnow-website",

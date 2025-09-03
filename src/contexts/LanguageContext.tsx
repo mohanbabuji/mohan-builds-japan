@@ -96,7 +96,13 @@ const translations = {
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<"en" | "ja">("en");
+  // Detect browser language and set default to Japanese if browser language starts with 'ja'
+  const getBrowserLanguage = (): "en" | "ja" => {
+    const browserLang = navigator.language || (navigator as any).userLanguage;
+    return browserLang && browserLang.startsWith("ja") ? "ja" : "en";
+  };
+
+  const [language, setLanguage] = useState<"en" | "ja">(getBrowserLanguage());
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "ja" : "en"));

@@ -10,6 +10,18 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { useState } from "react";
 
 // Sample project data - in a real app, this would come from an API
 const projectsData = {
@@ -17,7 +29,7 @@ const projectsData = {
     title: "AWS Cloud Monitoring Dashboard",
     description:
       "A comprehensive real-time cloud infrastructure monitoring solution that provides automated scaling recommendations and cost optimization insights.",
-    image: "/api/placeholder/800/400",
+
     technologies: [
       "React",
       "AWS Lambda",
@@ -69,7 +81,7 @@ const projectsData = {
     title: "Modern E-commerce Platform",
     description:
       "A full-stack e-commerce solution with serverless architecture, featuring payment integration, inventory management, and admin dashboard.",
-    image: "/api/placeholder/800/400",
+    image: "/images/Home.png",
     technologies: [
       "Next.js",
       "Stripe",
@@ -79,7 +91,7 @@ const projectsData = {
       "AWS Cognito",
     ],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com/mohan/ecommerce",
+    githubUrl: "https://github.com/mohanbabuji/Streaks-Website-Design",
     overview: {
       en: "A modern, scalable e-commerce platform built with Next.js and deployed on serverless infrastructure. Features include real-time inventory management, secure payment processing, and a comprehensive admin dashboard.",
       ja: "Next.jsで構築され、サーバーレスインフラストラクチャに展開された、モダンでスケーラブルなeコマースプラットフォーム。リアルタイム在庫管理、安全な決済処理、包括的な管理ダッシュボードが特徴です。",
@@ -252,10 +264,10 @@ const projectsData = {
     title: "Learnnow School Website Landing Page",
     description:
       "Professional educational website landing page design for Learnnow school featuring course information, student resources, and AWS learning materials with comprehensive documentation.",
-    image: "/api/placeholder/800/400",
+    image: "/images/lernow.PNG",
     technologies: ["React", "Next.js", "Tailwind CSS", "Notion API", "Vercel"],
     liveUrl: "https://erasreboot.io/",
-    FigmaUrl:
+    githubUrl:
       "https://www.figma.com/proto/IAyUNYeI3HTLaCpfNDV1Xh/learnow-LP-page?node-id=11-8626",
     overview: {
       en: "A comprehensive educational platform designed for Learnnow school that showcases their AWS courses and learning resources. The website integrates with Notion to dynamically display course content and documentation, providing students with an accessible and organized learning experience.",
@@ -452,12 +464,21 @@ const projectsData = {
 const ProjectDetail = () => {
   const { id } = useParams();
   const { language } = useLanguage();
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const project = id ? projectsData[id as keyof typeof projectsData] : null;
 
   if (!project) {
     return <Navigate to="/works" replace />;
   }
+
+  const handleLiveDemoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsAlertOpen(true);
+  };
+
+  // Check if the URL is an example site (like example.com)
+  const isExampleSite = project.liveUrl?.includes("example.com");
 
   return (
     <div className="min-h-screen pt-16">
@@ -480,20 +501,62 @@ const ProjectDetail = () => {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="btn-primary group">
-                    {language === "en"
-                      ? "View Live Site"
-                      : "ライブサイトを見る"}
-                    <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </a>
-              )}
+              {project.liveUrl &&
+                (isExampleSite ? (
+                  <AlertDialog open={isAlertOpen} onOpenChange={setIsAlertOpen}>
+                    <AlertDialogTrigger asChild>
+                      <Button className="btn-primary group">
+                        {language === "en"
+                          ? "View Live Site"
+                          : "ライブサイトを見る"}
+                        <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>
+                          {language === "en"
+                            ? "Live Demo Not Available"
+                            : "ライブデモは利用できません"}
+                        </AlertDialogTitle>
+                        <AlertDialogDescription>
+                          {language === "en"
+                            ? "The live demo for this project is currently being prepared and will be available soon. Thank you for your interest!"
+                            : "このプロジェクトのライブデモは現在準備中であり、まもなく利用可能になります。ご関心をお寄せいただきありがとうございます！"}
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>
+                          {language === "en" ? "Close" : "閉じる"}
+                        </AlertDialogCancel>
+                        <AlertDialogAction asChild>
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {language === "en"
+                              ? "Continue to Site"
+                              : "サイトに進む"}
+                          </a>
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                ) : (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="btn-primary group">
+                      {language === "en"
+                        ? "View Live Site"
+                        : "ライブサイトを見る"}
+                      <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </a>
+                ))}
               {project.githubUrl && (
                 <a
                   href={project.githubUrl}
@@ -515,11 +578,13 @@ const ProjectDetail = () => {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="animate-fade-up rounded-2xl overflow-hidden shadow-large">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-96 md:h-[600px] object-cover"
-            />
+            <a href={project.image} target="_blank">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-96 md:h-[600px] object-cover"
+              />
+            </a>
           </div>
         </div>
       </section>
