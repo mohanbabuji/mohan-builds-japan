@@ -41,7 +41,7 @@ export const Navigation = () => {
             to="/"
             className="text-2xl font-black tracking-tight text-black hover:text-gray-600 transition-colors"
           >
-            Mohan
+            Mohan.
           </Link>
 
           {/* Desktop Navigation - Minimal */}
