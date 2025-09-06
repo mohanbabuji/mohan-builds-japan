@@ -1,8 +1,11 @@
 import { MapPin, Briefcase, Heart, Award } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const About = () => {
   const { t, language } = useLanguage();
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   const timeline = [
     {
@@ -10,8 +13,8 @@ const About = () => {
       title: language === "en" ? "AWS Certification Achieved" : "AWS認定取得",
       description:
         language === "en"
-          ? "Earned AWS Certified Cloud Practitioner certification, specializing in cloud architecture design."
-          : "AWS認定ソリューションアーキテクト資格を取得、クラウドアーキテクチャ設計を専門化",
+          ? "Earned AWS Certified Cloud Practitioner certification, specializing in cloud architecture design. Planning to attend AI Practitioner certification on September 20th and Solution Architect Associate certification on December 6th. Also planning to take up Terraform Associate exam by the end of this year."
+          : "AWS認定クラウドプラクティショナー資格を取得、クラウドアーキテクチャ設計を専門化。9月20日にAIプラクティショナー認定、12月6日にソリューションアーキテクトアソシエイト認定の受験を予定。また、年末までにTerraformアソシエイト試験の受験も計画中。",
     },
     {
       year: "2023",
@@ -250,7 +253,32 @@ const About = () => {
                   <h3 className="text-lg font-semibold text-text-primary mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-body">{item.description}</p>
+                  <p className="text-body mb-4">{item.description}</p>
+                  {item.year === "2025" && (
+                    <Dialog open={isImageOpen} onOpenChange={setIsImageOpen}>
+                      <DialogTrigger asChild>
+                        <div className="cursor-pointer hover:opacity-80 transition-opacity">
+                          <img
+                            src="/images/aws-certificate-ccp.png"
+                            alt="AWS Certified Cloud Practitioner Certificate"
+                            className="w-64 h-auto rounded-lg shadow-md border border-gray-200"
+                          />
+                          <p className="text-xs text-text-muted mt-2">
+                            {language === "en"
+                              ? "Click to view certificate"
+                              : "クリックして証明書を表示"}
+                          </p>
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl w-full">
+                        <img
+                          src="/images/aws-certificate-ccp.png"
+                          alt="AWS Certified Cloud Practitioner Certificate"
+                          className="w-full h-auto rounded-lg"
+                        />
+                      </DialogContent>
+                    </Dialog>
+                  )}
                 </div>
               </div>
             ))}
